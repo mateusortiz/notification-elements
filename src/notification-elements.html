@@ -2,17 +2,53 @@
 <link rel="import" href="../app/bower_components/polymer/polymer.html">
 
 <!-- Define your custom element -->
-<polymer-element name="notification-elements" attributes="message icon duration">
+<polymer-element name="notification-elements" attributes="title body icon duration">
     <template>
-        <style>
-            :host {
-                display: block;
-            }
-        </style>
+
     </template>
     <script>
         Polymer('notification-elements', {
-            
+            /* -- Attributes ------------------------- */
+            body: 'Hello',
+            title: 'Welcome',
+            icon: 'icon.png',
+            duration: 10,
+
+            /* -- Lifecycle ------------------------- */
+            created: function() {
+                if (!('Notification' in window)) {
+                    alert("This browser does not support desktop notification");
+                }
+
+                // Let's check if the user is okay to get some notification
+                else if (Notification.permission === 'granted') {
+                    // If it's okay let's create a notification
+                    var notification = new Notification(notification);
+                }
+
+                // Otherwise, we need to ask the user for permission
+                // Note, Chrome does not implement the permission static property
+                // So we have to check for NOT 'denied' instead of 'default'
+                else if (Notification.permission !== 'denied') {
+                    Notification.requestPermission(function (permission) {
+
+                        // Whatever the user answers, we make sure we store the information
+                        if(!('permission' in Notification)) {
+                            Notification.permission = permission;
+                        }
+                    });
+                }
+            },
+
+            ready: function () {
+                var notification = new Notification(this.title, {
+                    dir: "'auto'",
+                    icon: this.icon,
+                    lang: '',
+                    body: this.body,
+                    tag: 'tag',
+                });
+            }
         });
     </script>
 </polymer-element>

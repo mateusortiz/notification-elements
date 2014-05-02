@@ -5,7 +5,7 @@
     <title>&lt;notifications&gt;</title>
 
     <!-- Importing Web Component's Polyfill -->
-    <script src="bower_components/platform/platform.js"></script>
+    <script src="app/bower_components/platform/platform.js"></script>
 
     <!-- Importing Custom Elements -->
     <link rel="import" href="src/notification-elements.html">
@@ -13,7 +13,8 @@
 <body>
 
     <!-- Using Custom Elements -->
-    <notification-elements></notification-elements>
+    <notification-elements id="notification" body="welcome my web component" title="Welcome"></notification-elements>
+
 
 </body>
 </html>
