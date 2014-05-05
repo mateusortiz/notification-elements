@@ -9,12 +9,42 @@
 
     <!-- Importing Custom Elements -->
     <link rel="import" href="src/notification-elements.html">
+
+    <style>
+	.btn-notify {
+		padding: 20px;
+		font-size: 14px;
+		margin: 20px;
+	}
+    </style>
 </head>
 <body>
 
-    <!-- Using Custom Elements -->
-    <notification-elements id="notification" body="welcome my web component" title="Welcome"></notification-elements>
+    	<!-- Using Custom Elements -->
+    	<notification-elements id="notification" body="welcome my web component" title="Welcome"></notification-elements>
 
+
+	<notification-elements id="notify" body="welcome to django" title="bien vinido"></notification-elements>
+
+	<div class="notify-exemple">
+		<form class="form">
+			<fieldset>
+				<button class="btn-notify">Notification</button>
+			</fieldset>
+		</form>
+	</div>
+
+	<script>
+	window.addEventListener('polymer-ready', function(e) {
+		var btn = document.querySelector('.btn-notify'),
+			notify = document.querySelector('#notify');
+
+		btn.addEventListener('submit', function(e) {
+			e.preventDefault();
+			notify.start();
+		});
+	});
+	</script>
 
 </body>
 </html>
