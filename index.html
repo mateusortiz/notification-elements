@@ -1,49 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>&lt;notifications&gt;</title>
+		<meta charset="UTF-8">
+		<title>&lt;notifications&gt;</title>
 
-    <!-- Importing Web Component's Polyfill -->
-    <script src="app/bower_components/platform/platform.js"></script>
+		<!-- Importing Web Component's Polyfill -->
+		<script src="bower_components/platform/platform.js"></script>
 
-    <!-- Importing Custom Elements -->
-    <link rel="import" href="src/notification-elements.html">
+		<!-- Importing Custom Elements -->
+		<link rel="import" href="src/notification-elements.html">
 
-    <style>
-	.btn-notify {
-		padding: 20px;
-		font-size: 14px;
-		margin: 20px;
+<style type="text/css">
+	#buttons{
+		border: 1px solid #333;
+		margin: 10px;
+		padding: 10px;
 	}
-    </style>
+</style>
+
 </head>
 <body>
 
-    	<!-- Using Custom Elements -->
-    	<notification-elements id="notification" body="welcome my web component" title="Welcome"></notification-elements>
+	<notification-elements id="button-notification-1" header="Bienvenido" body="This is a simple notification!" ></notification-elements>
 
+	<notification-elements id="button-notification-2" header="Meooow!" body="I'm the Octocat!" icon="http://forum.webflow.com/plugins/emoji/images/octocat.png" ></notification-elements>
 
-	<notification-elements id="notify" body="welcome to django" title="bien vinido"></notification-elements>
-
-	<div class="notify-exemple">
-		<form class="form">
-			<fieldset>
-				<button class="btn-notify">Notification</button>
-			</fieldset>
-		</form>
+	<div id="buttons">
+		<button id="btn-notify-1">Notification #1</button>
+		<button id="btn-notify-2">Notification #2</button>
 	</div>
 
 	<script>
-	window.addEventListener('polymer-ready', function(e) {
-		var btn = document.querySelector('.btn-notify'),
-			notify = document.querySelector('#notify');
 
-		btn.addEventListener('submit', function(e) {
-			e.preventDefault();
-			notify.start();
-		});
-	});
+	window.addEventListener( 'polymer-ready', function( e ) {
+		
+		document.querySelector( '#btn-notify-1' ).addEventListener('click', function( e ) {
+			document.querySelector( '#button-notification-1' ).notify();
+		} );
+
+		document.querySelector( '#btn-notify-2' ).addEventListener('click', function( e ) {
+			document.querySelector( '#button-notification-2' ).notify();
+		} );
+
+	} );
 	</script>
 
 </body>

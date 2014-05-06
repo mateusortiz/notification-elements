@@ -1,54 +1,75 @@
 <!-- Import Polymer -->
-<link rel="import" href="../app/bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/polymer/polymer.html">
 
 <!-- Define your custom element -->
-<polymer-element name="notification-elements" attributes="title body icon duration">
-    <template>
-
-    </template>
+<polymer-element name="notification-elements" attributes="header body icon duration onclick">
+    <template></template>
     <script>
-        Polymer('notification-elements', {
+        Polymer( 'notification-elements', {
+            
             /* -- Attributes ------------------------- */
-            body: 'Hello',
-            title: 'Welcome',
-            icon: 'icon.png',
-            duration: 10,
+            body: null,
+            title: null,
+            icon: null,
+            dir: null,
+            tag: null,
+            autostart : false,
+            permission: false,
 
             /* -- Lifecycle ------------------------- */
             created: function() {
-                if (!('Notification' in window)) {
-                    alert("This browser does not support desktop notification");
-                }
-
-                // Let's check if the user is okay to get some notification
-                else if (Notification.permission === 'granted') {
-                    // If it's okay let's create a notification
-                    var notification = new Notification(notification);
-                }
-
-                // Otherwise, we need to ask the user for permission
-                // Note, Chrome does not implement the permission static property
-                // So we have to check for NOT 'denied' instead of 'default'
-                else if (Notification.permission !== 'denied') {
-                    Notification.requestPermission(function (permission) {
-
-                        // Whatever the user answers, we make sure we store the information
-                        if(!('permission' in Notification)) {
-                            Notification.permission = permission;
-                        }
-                    });
+                // Check if the browser supports desktop Notification
+                if ( !( 'Notification' in window ) ) {
+                    console.log( 'This browser does not support desktop notification :,( ');
                 }
             },
 
-            ready: function () {
-                var notification = new Notification(this.title, {
-                    dir: "'auto'",
-                    icon: this.icon,
-                    lang: '',
-                    body: this.body,
-                    tag: 'tag',
-                });
-            }
-        });
+            // Check the permissions and initialize the attributes
+            ready: function() {
+                // Check if we have permission to use Notification
+                if ( Notification.permission === 'granted' ) {
+                    this.permission = true;
+                }
+                // Ouch, we don't have permission, so, lets ask for it unless the user denied it
+                else if ( Notification.permission !== 'denied' ) {
+                    Notification.requestPermission( function ( permission ) {
+
+                        if( !( 'permission' in Notification ) ) {
+                            Notification.permission = permission;
+                        }
+
+                        // Yay, we have the permission
+                        if ( permission === 'granted' ) {
+                            this.permission = true;
+                        }
+
+                    } );
+                }
+                // If we have the permission, finally initialize attributes
+                if ( this.permission ){
+                    this.title = this.header || '';
+
+                    // Put the attrs at the options attr
+                    this.options = {
+                        body: this.body || '',
+                        dir: this.dir || 'auto',
+                        icon : this.icon,
+                        lang: this.lang,
+                        tag: this.tag || 'notification-element'
+                    }
+
+                    // Call notify if it autostart 
+                    if ( this.autostart ) {
+                        this.notify();
+                    }
+                }
+            },
+            // run the notification
+            notify: function(){
+                if ( this.permission ){
+                    var notification = new Notification( this.title, this.options );
+                }
+            } 
+        } );
     </script>
 </polymer-element>
