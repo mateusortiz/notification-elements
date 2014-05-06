@@ -64,7 +64,7 @@ In order to run it locally you'll need to fetch some dependencies and a basic se
 * To test your project, start the development server and open `http://localhost:8000`.
 
     ```sh
-    $ grunt server
+    $ grunt connect
     ```
 
 * To provide a live demo, send everything to `gh-pages` branch.
