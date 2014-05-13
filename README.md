@@ -1,4 +1,4 @@
-# &lt;notification&gt; ![Bower Version](https://badge.fury.io/bo/voice-element.svg)
+# &lt;notification&gt; ![Bower Version](http://img.shields.io/badge/Bower%20package-0.1.0-green.svg)
 
 > [Web Notifications API](http://www.w3.org/TR/notifications/) wrapper that allows you to do Notifications using [Polymer](http://www.polymer-project.org)
 
