@@ -1,6 +1,6 @@
 {
 	"name": "notification-elements",
-	"version": "0.0.0",
+	"version": "0.1.0",
 	"description": "Web Notification API wrapper that allows you to do Notifications using Polymer",
 	"author": "Mateus Ortiz <mateus.prado@ig.com.br>",
 	"license": "MIT",

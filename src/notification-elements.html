@@ -1,11 +1,10 @@
 <!-- Import Polymer -->
-<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../app/bower_components/polymer/polymer.html">
 
 <!-- Define your custom element -->
 <polymer-element name="notification-elements" attributes="header body icon duration onclick">
-    <template></template>
     <script>
-        Polymer( 'notification-elements', {
+        Polymer('notification-elements', {
             
             /* -- Attributes ------------------------- */
             body: null,
@@ -19,34 +18,34 @@
             /* -- Lifecycle ------------------------- */
             created: function() {
                 // Check if the browser supports desktop Notification
-                if ( !( 'Notification' in window ) ) {
-                    console.log( 'This browser does not support desktop notification :,( ');
+                if (!('Notification' in window)) {
+                    console.log('This browser does not support desktop notification :( ');
                 }
             },
 
             // Check the permissions and initialize the attributes
             ready: function() {
                 // Check if we have permission to use Notification
-                if ( Notification.permission === 'granted' ) {
+                if (Notification.permission === 'granted') {
                     this.permission = true;
                 }
                 // Ouch, we don't have permission, so, lets ask for it unless the user denied it
-                else if ( Notification.permission !== 'denied' ) {
-                    Notification.requestPermission( function ( permission ) {
+                else if (Notification.permission !== 'denied') {
+                    Notification.requestPermission(function (permission) {
 
-                        if( !( 'permission' in Notification ) ) {
+                        if(!('permission' in Notification)) {
                             Notification.permission = permission;
                         }
 
                         // Yay, we have the permission
-                        if ( permission === 'granted' ) {
+                        if (permission === 'granted') {
                             this.permission = true;
                         }
 
                     } );
                 }
                 // If we have the permission, finally initialize attributes
-                if ( this.permission ){
+                if (this.permission){
                     this.title = this.header || '';
 
                     // Put the attrs at the options attr
@@ -59,17 +58,28 @@
                     }
 
                     // Call notify if it autostart 
-                    if ( this.autostart ) {
+                    if (this.autostart) {
                         this.notify();
                     }
                 }
             },
             // run the notification
-            notify: function(){
-                if ( this.permission ){
-                    var notification = new Notification( this.title, this.options );
+            notify: function() {
+                if (this.permission) {
+                    var notification = new Notification(this.title, this.options);
                 }
+            },
+
+            // Events
+            onclick: function() {
+
+            },
+
+            onshow: function() {
+                setTimeout(function () {                    
+                    notification.close();
+                }, 10000); 
             } 
-        } );
+        });
     </script>
 </polymer-element>
