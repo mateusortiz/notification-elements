@@ -1,11 +1,11 @@
 <!-- Import Polymer -->
-<link rel="import" href="../app/bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/polymer/polymer.html">
 
 <!-- Define your custom element -->
 <polymer-element name="notification-elements" attributes="header body icon duration onclick">
     <script>
         Polymer('notification-elements', {
-            
+
             /* -- Attributes ------------------------- */
             body: null,
             title: null,
@@ -57,7 +57,7 @@
                         tag: this.tag || 'notification-element'
                     }
 
-                    // Call notify if it autostart 
+                    // Call notify if it autostart
                     if (this.autostart) {
                         this.notify();
                     }
@@ -76,10 +76,10 @@
             },
 
             onshow: function() {
-                setTimeout(function () {                    
+                setTimeout(function () {
                     notification.close();
-                }, 10000); 
-            } 
+                }, 10000);
+            }
         });
     </script>
 </polymer-element>

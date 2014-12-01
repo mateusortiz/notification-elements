@@ -6,21 +6,21 @@
     <meta name="description" content="A Web Component using Web Notifications API is amazing">
 
     <title>&lt;Notification Elements&gt;</title>
-    
+
     <!-- Stylesheets -->
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.4.2/pure-min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 
     <!-- Import Web Components Polyfill -->
-    <script src="app/bower_components/platform/platform.js"></script>
+    <script src="app/bower_components/webcomponentsjs/webcomponents.min.js"></script>
 
     <!-- Import Custom Element -->
     <link rel="import" href="src/notification-elements.html">
 
 </head>
 <body>
-    
+
     <header class="header">
         <div class="wrapper">
             <div class="wc-icon">
@@ -40,9 +40,9 @@
         </div>
     </header>
 
-    <!-- Main Wrapper --> 
+    <!-- Main Wrapper -->
     <main class="main-wrapper">
-        
+
         <!-- Install Web Component -->
         <div class="main">
             <h2 class="main-head is-center"><span>Install</span></h2>
@@ -67,7 +67,7 @@
 
                 <!-- Demo notification #1 -->
                 <p>The first demo, we have some standard <strong>Notification</strong> attributes, which when clicked triggers the <strong>notification</strong></p>
-                
+
                 <div class="demo">
                     <h3>Simple notification</h3>
                 </div>
@@ -91,7 +91,7 @@
                 </div>
 
                 <pre><code>&lt;notification-elements id="button-notification-1 header="Meooow!" body="I'm the Octocat!" icon="http://forum.webflow.com/plugins/emoji/images/octocat.png"&gt;&lt;/notification-elements&gt;
-                                    
+
 &lt;script&gt;
 var demoBtn = document.querySelector('#demo-btn'),
     notifyElement = document.querySelector('#button-notification-1');
@@ -101,7 +101,7 @@ demoBtn.addEventListener('click', function(e) {
 });
 &lt;/script&gt;
 </code></pre>
-            
+
                 <!-- attributes -->
                 <h2 class="main-head main-head-box">Attributes</h2>
                 <table class="pure-table pure-table-striped">
