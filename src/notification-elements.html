@@ -67,6 +67,9 @@
             notify: function() {
                 if (this.permission) {
                     var notification = new Notification(this.title, this.options);
+                    notification.addEventListener('click', function() {
+                        this.fire('click');
+                    }.bind(this));
                 }
             },
 
