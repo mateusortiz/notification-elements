@@ -5,17 +5,18 @@ module.exports = function(grunt) {
             demo: {
                 options: {
                     open: true,
-                    keepalive: true
+                    keepalive: true,
+                    port: 3001
                 }
             }
         },
         replace: {
             example: {
                 src: ['src/*'],
-                dest: 'dist/',
+                dest: '/',
                 replacements: [{
-                    from: 'bower_components',
-                    to: '..'
+                    from: '<link rel="import" href="../bower_components/polymer/polymer.html">',
+                    to: ''
                 }]
             }
         }
