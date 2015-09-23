@@ -3,3 +3,9 @@ node_modules
 
 # OS X
 .DS_Store
+
+# VIM
+*.swp
+
+# Bower
+bower_components/*
